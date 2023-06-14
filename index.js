@@ -21,7 +21,6 @@ Ejercicios
     e) La función debe retornar una promesa
 ​
 3) Utilizar la función eliminarProducto utilizando .then() y .catch()
-​
 */
 
 
@@ -87,6 +86,7 @@ class Carrito {
 
         await producto.then((prod) => {
             console.log("Producto encontrado", prod);
+            // Si el producto existe en el carrito, agrego solamente la cantidad. Sino agrego un producto completo
             const existeEnCarrito = this.productos.find(produ => produ.sku === sku)
             if (existeEnCarrito) {
                 this.productos.map(prodCart => {
@@ -113,7 +113,7 @@ class Carrito {
         })
     }
 
-    //Ejercicio 2 Agregar la función eliminarProducto a la clase Carrito y quedevuelva una promesa.
+    //Ejercicio 2 Agregar la función eliminarProducto a la clase Carrito y que devuelva una promesa.
 
     async eliminarProducto(sku, cantidad) {
         return new Promise((resolve, reject) => {
@@ -133,7 +133,7 @@ class Carrito {
                         console.log(carrito)
                     }
                 } else {
-                    reject(`Product ${sku} not found, try again`);
+                    reject(`El producto ${sku} ingresado no existe, intente nuevamente`);
                 }
             }, 1500);
         });
@@ -162,7 +162,7 @@ function findProductBySku(sku) {
             if (foundProduct) {
                 resolve(foundProduct);
             } else {
-                reject(`Product ${sku} not found, try again`);
+                reject(`El producto ${sku} no se encontró en la base de datos, intente nuevamente.`);
             }
         }, 1500);
     });
